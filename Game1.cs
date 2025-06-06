@@ -19,15 +19,20 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-
         base.Initialize();
+
+        _graphics.PreferredBackBufferWidth = 1280;
+        _graphics.PreferredBackBufferHeight = 720;
+        _graphics.ApplyChanges();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        DebugHelper.Initialize(_spriteBatch, Content.Load<SpriteFont>("Fonts\\debugfont"));
+        DebugHelper.Initialize(_spriteBatch,
+                                Content.Load<SpriteFont>("Fonts\\debugfont"),
+                                Content.Load<SpriteFont>("Fonts\\debugfontBig"));
     }
 
     protected override void Update(GameTime gameTime)
@@ -47,8 +52,8 @@ public class Game1 : Game
         DebugHelper.Begin();
 
         BigNumber b = new BigNumber(232);
-        DebugHelper.DrawText(b.ToString(), 10, 10, Color.Black);
-        DebugHelper.DrawText($"FPS: {1f / gameTime.ElapsedGameTime.TotalSeconds:0}", 10, 30, Color.LightGreen);
+        DebugHelper.DrawText($"Gold: {b.ToString()}", 10, 10, Color.Black, true);
+        DebugHelper.DrawText($"FPS: {1f / gameTime.ElapsedGameTime.TotalSeconds:0}", 10, 30, Color.DarkRed, true);
         DebugHelper.End();
 
         base.Draw(gameTime);
