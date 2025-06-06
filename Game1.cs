@@ -19,7 +19,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        BigNumber a = new BigNumber(1500);        // 1.5K
+        BigNumber a = new BigNumber(154300);        // 1.5K
         BigNumber b = new BigNumber(2500000);     // 2.5M
         BigNumber c = a + b;                       // 2.5015M
         BigNumber d = a * b;                       // 3.75B
