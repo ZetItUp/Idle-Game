@@ -19,15 +19,6 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        BigNumber a = new BigNumber(154300);        // 1.5K
-        BigNumber b = new BigNumber(2500000);     // 2.5M
-        BigNumber c = a + b;                       // 2.5015M
-        BigNumber d = a * b;                       // 3.75B
-
-        Console.WriteLine(a); // "1.50K"
-        Console.WriteLine(b); // "2.50M"
-        Console.WriteLine(c); // "2.50M"
-        Console.WriteLine(d);
 
         base.Initialize();
     }
@@ -36,7 +27,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        DebugHelper.Initialize(_spriteBatch, Content.Load<SpriteFont>("Fonts\\debugfont"));
     }
 
     protected override void Update(GameTime gameTime)
@@ -44,7 +35,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        
 
         base.Update(gameTime);
     }
@@ -53,7 +44,12 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        DebugHelper.Begin();
+
+        BigNumber b = new BigNumber(232);
+        DebugHelper.DrawText(b.ToString(), 10, 10, Color.Black);
+        DebugHelper.DrawText($"FPS: {1f / gameTime.ElapsedGameTime.TotalSeconds:0}", 10, 30, Color.LightGreen);
+        DebugHelper.End();
 
         base.Draw(gameTime);
     }
